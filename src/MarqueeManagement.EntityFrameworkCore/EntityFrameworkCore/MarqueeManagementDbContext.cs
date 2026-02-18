@@ -14,6 +14,7 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using MarqueeManagement.Marquees;
 
 namespace MarqueeManagement.EntityFrameworkCore;
 
@@ -56,7 +57,7 @@ public class MarqueeManagementDbContext :
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
     #endregion
-
+    public DbSet<Marquee> Marquees { get; set; }
     public MarqueeManagementDbContext(DbContextOptions<MarqueeManagementDbContext> options)
         : base(options)
     {
@@ -78,7 +79,7 @@ public class MarqueeManagementDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
-        
+
         /* Configure your own tables/entities inside here */
 
         //builder.Entity<YourEntity>(b =>
@@ -87,5 +88,23 @@ public class MarqueeManagementDbContext :
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
         //});
+
+        builder.Entity<Marquee>(b =>
+        {
+            b.ToTable(MarqueeManagementConsts.DbTablePrefix + "Marquees",
+               MarqueeManagementConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.Name).IsRequired()
+            .HasMaxLength(MarqueeConsts.MaxNameLength);
+            b.HasIndex(x => x.Name);
+            b.Property(x => x.Location).IsRequired().HasMaxLength(MarqueeConsts.MaxLocationLength);
+            b.HasIndex(x => x.Location);
+            b.Property(x => x.Description);
+            b.HasIndex(x => x.Description);
+            b.Property(x => x.Capacity).IsRequired();
+            b.HasIndex(x => x.Capacity);
+            b.Property(x => x.PricePerDay).IsRequired();
+            b.HasIndex(x => x.PricePerDay);
+        });
     }
 }
