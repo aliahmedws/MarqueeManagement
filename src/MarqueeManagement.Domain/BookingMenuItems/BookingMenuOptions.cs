@@ -1,13 +1,10 @@
 ﻿using System;
 using Volo.Abp.Domain.Entities.Auditing;
-
 namespace MarqueeManagement.BookingMenuItems;
-
 public class BookingMenuOptions : FullAuditedAggregateRoot<Guid>
 {
     public int Quantity { get; set; }
     public decimal Price { get; set; }
-
     private BookingMenuOptions()
     {
         //constructor 
@@ -17,6 +14,5 @@ public class BookingMenuOptions : FullAuditedAggregateRoot<Guid>
     {
         Quantity = quantity;
         Price = price;
-
     }
 }
