@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Domain.Services;
@@ -21,7 +18,7 @@ public class MenuCategoriesManager : DomainService
         var existing = await _menuCategoriesRepository.FindByNameAsync(name);
         if (existing != null)
         {
-            throw new UserFriendlyException("MenuCategoryAlreadyExists")
+            throw new UserFriendlyException("MenuCategoryAlreadyExists");
                 
         }
         return new MenuCategories

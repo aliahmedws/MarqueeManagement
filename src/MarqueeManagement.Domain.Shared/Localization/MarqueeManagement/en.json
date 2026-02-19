@@ -5,12 +5,10 @@
     "Menu:Home": "Home",
     "Welcome": "Welcome",
     "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information visit",
-<<<<<<< Updated upstream
     "MenuCategoryAlreadyExists:00001": "There is already a menu category with the same name. Please choose a different name: {name}",
-=======
-    "Welcome": "Welcome",
->>>>>>> Stashed changes
     "NameAlreadyException": "{name} already exists",
-    "CustomerEmailExistsException": "{email} already exists"
+    "CustomerEmailExistsException": "{email} already exists Try again",
+    "CustomerPhoneExistsException": "{phone} already exists. Try again",
+    "MenuItemNameAlreadyExists": "{name} already exists. Try again"
   }
 }

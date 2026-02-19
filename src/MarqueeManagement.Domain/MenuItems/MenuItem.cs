@@ -1,12 +1,11 @@
-﻿using MarqueeManagement.Marquees;
-using System;
+﻿using System;
 using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
 namespace MarqueeManagement.MenuItems;
 
-public class MenuItems : FullAuditedAggregateRoot<Guid>, IMultiTenant
+public class MenuItem : FullAuditedAggregateRoot<Guid>, IMultiTenant
 {
     public string Name { get; set; }
     public string? Description { get; set; }
@@ -15,11 +14,11 @@ public class MenuItems : FullAuditedAggregateRoot<Guid>, IMultiTenant
     public Guid? TenantId { get; set; }
 
 
-    public MenuItems()
+    public MenuItem()
     {
     }
 
-    internal MenuItems(Guid id,
+    internal MenuItem(Guid id,
         string name,
         string? description,
         int price,
@@ -41,13 +40,13 @@ public class MenuItems : FullAuditedAggregateRoot<Guid>, IMultiTenant
         );
     }
 
-    internal MenuItems ChangeName(string name)
+    internal MenuItem ChangeName(string name)
     {
         SetName(name);
         return this;
     }
 
-    internal MenuItems ChangeDescription(string description)
+    internal MenuItem ChangeDescription(string? description)
     {
         SetDescription(description);
         return this;
@@ -67,7 +66,7 @@ public class MenuItems : FullAuditedAggregateRoot<Guid>, IMultiTenant
             Description = null;
         }
     }
-    internal MenuItems ChangePrice(int price)
+    internal MenuItem ChangePrice(int price)
     {
         SetPrice(price);
         return this;

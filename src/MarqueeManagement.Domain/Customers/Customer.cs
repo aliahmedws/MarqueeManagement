@@ -7,7 +7,7 @@ namespace MarqueeManagement.Customers;
 
 public class Customer : FullAuditedAggregateRoot<Guid>, IMultiTenant
 {
-    public string FullName { get; set; }
+    public string Name { get; set; }
     public string Phone { get; set; }
     public string Email { get; set; }
     public string Address { get; set; }
@@ -18,21 +18,21 @@ public class Customer : FullAuditedAggregateRoot<Guid>, IMultiTenant
     }
 
     internal Customer(Guid id,
-        string fullName,
+        string Name,
         string phone,
         string email,
         string address
         ) : base(id)
     {
-        SetFullName(fullName);
+        SetFullName(Name);
         SetPhone(phone);
         SetEmail(email);
         SetAddress(address);
     }
 
-    internal Customer ChangeDetails(string fullName, string phone, string email, string address)
+    internal Customer ChangeDetails(string Name, string phone, string email, string address)
     {
-        SetFullName(fullName);
+        SetFullName(Name);
         SetPhone(phone);
         SetEmail(email);
         SetAddress(address);
@@ -41,10 +41,10 @@ public class Customer : FullAuditedAggregateRoot<Guid>, IMultiTenant
 
     private void SetFullName(string fullName)
     {
-        FullName = Check.NotNullOrWhiteSpace(
-            fullName,
-            nameof(fullName),
-            maxLength: CustomerConsts.MaxFullNameLength);
+        Name = Check.NotNullOrWhiteSpace(
+            Name,
+            nameof(Name),
+            maxLength: CustomerConsts.MaxNameLength);
     }
     private void SetPhone(string phone)
     {

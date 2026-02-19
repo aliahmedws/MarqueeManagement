@@ -17,7 +17,7 @@ public interface IMarqueeRepository : IRepository<Marquee, Guid>
        string? location = null
        );
     Task<long> GetCountAsync(
-         string? filter = null,
+        string? filter = null,
         string? name = null,
         string? location = null
         );
