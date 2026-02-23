@@ -24,7 +24,7 @@ public class Customer : FullAuditedAggregateRoot<Guid>, IMultiTenant
         string address
         ) : base(id)
     {
-        SetFullName(Name);
+        SetName(Name);
         SetPhone(phone);
         SetEmail(email);
         SetAddress(address);
@@ -32,14 +32,14 @@ public class Customer : FullAuditedAggregateRoot<Guid>, IMultiTenant
 
     internal Customer ChangeDetails(string Name, string phone, string email, string address)
     {
-        SetFullName(Name);
+        SetName(Name);
         SetPhone(phone);
         SetEmail(email);
         SetAddress(address);
         return this;
     }
 
-    private void SetFullName(string fullName)
+    private void SetName(string Name)
     {
         Name = Check.NotNullOrWhiteSpace(
             Name,

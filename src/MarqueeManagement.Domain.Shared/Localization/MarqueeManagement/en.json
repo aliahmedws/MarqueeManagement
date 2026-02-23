@@ -9,6 +9,31 @@
     "NameAlreadyException": "{name} already exists",
     "CustomerEmailExistsException": "{email} already exists Try again",
     "CustomerPhoneExistsException": "{phone} already exists. Try again",
-    "MenuItemNameAlreadyExists": "{name} already exists. Try again"
+    "MenuItemNameAlreadyExists": "{name} already exists. Try again",
+    "Menu:MarqueeManagement": "Marquee Management",
+    "Menu:Marquees": "Marquees",
+    "Menu:Customers": "Customers",
+    "Menu:MenuItems": "Menu Items",
+    "Permission:MarqueeManagement": "Marquee Management",
+    "Permission:Marquees": "Marquees",
+    "Permission:Marquees.Create": "Create",
+    "Permission:Marquees.Edit": "Edit",
+    "Permission:Marquees.Delete": "Delete",
+
+    "Permission:Customers": "Customers",
+    "Permission:Customers.Create": "Create",
+    "Permission:Customers.Edit": "Edit",
+    "Permission:Customers.Delete": "Delete",
+
+    "Permission:MenuItems": "Menu Items",
+    "Permission:MenuItems.Create": "Create",
+    "Permission:MenuItems.Edit": "Edit",
+    "Permission:MenuItems.Delete": "Delete"
+
+
+
+
+
+
   }
 }

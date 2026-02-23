@@ -15,6 +15,8 @@ using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using MarqueeManagement.Marquees;
+using MarqueeManagement.Customers;
+using MarqueeManagement.MenuItems;
 
 namespace MarqueeManagement.EntityFrameworkCore;
 
@@ -58,6 +60,8 @@ public class MarqueeManagementDbContext :
 
     #endregion
     public DbSet<Marquee> Marquees { get; set; }
+    public DbSet<MenuItem> MenuItems { get; set; }
+    public DbSet<Customer> Customers { get; set; }
     public MarqueeManagementDbContext(DbContextOptions<MarqueeManagementDbContext> options)
         : base(options)
     {
@@ -105,6 +109,58 @@ public class MarqueeManagementDbContext :
             b.HasIndex(x => x.Capacity);
             b.Property(x => x.PricePerDay).IsRequired();
             b.HasIndex(x => x.PricePerDay);
+        });
+
+        builder.Entity<Customer>(b =>
+        {
+            b.ToTable(
+                MarqueeManagementConsts.DbTablePrefix + "Customers",
+                MarqueeManagementConsts.DbSchema
+            );
+
+            b.ConfigureByConvention();
+            b.Property(x => x.Name)
+                .IsRequired()
+                .HasMaxLength(CustomerConsts.MaxNameLength);
+
+            b.Property(x => x.Phone)
+                .IsRequired()
+                .HasMaxLength(CustomerConsts.MaxPhoneLength);
+
+            b.Property(x => x.Email)
+                .IsRequired()
+                .HasMaxLength(CustomerConsts.MaxEmailLength);
+
+            b.Property(x => x.Address)
+                .IsRequired()
+                .HasMaxLength(CustomerConsts.MaxAddressLength);
+
+            b.HasIndex(x => x.Phone);
+            b.HasIndex(x => x.Email);
+        });
+
+        builder.Entity<MenuItem>(b =>
+        {
+            b.ToTable(
+                MarqueeManagementConsts.DbTablePrefix + "MenuItems",
+                MarqueeManagementConsts.DbSchema);
+
+            b.ConfigureByConvention();
+
+            b.Property(x => x.Name)
+                .IsRequired()
+                .HasMaxLength(MenuItemConsts.MaxNameLength);
+
+            b.Property(x => x.Description)
+                .HasMaxLength(MenuItemConsts.MaxDescriptionLength);
+
+            b.Property(x => x.Price)
+                .IsRequired();
+
+            b.Property(x => x.IsAvailable).IsRequired();
+
+            b.HasIndex(x => x.Name);
+            b.HasIndex(x => x.Price);
         });
     }
 }

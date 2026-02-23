@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories;
 
 namespace MarqueeManagement.MenuItems;
 
-public interface IMenuItemRepository : IRepository<MenuItem>
+public interface IMenuItemRepository : IRepository<MenuItem, Guid>
 {
     Task<MenuItem> FindByNameAsync(string name);
     Task<List<MenuItem>> GetListAsync(

@@ -1,0 +1,18 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MarqueeManagement.MenuItems;
+
+public class UpdateMenuItemDto
+{
+    [Required]
+    [StringLength(MenuItemConsts.MaxNameLength)]
+    public string Name { get; set; } = string.Empty;
+
+    [StringLength(MenuItemConsts.MaxDescriptionLength)]
+    public string? Description { get; set; }
+
+    [Range(MenuItemConsts.MinPriceValue, MenuItemConsts.MaxPriceValue)]
+    public int Price { get; set; }
+
+    public bool IsAvailable { get; set; }
+}

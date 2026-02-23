@@ -17,5 +17,36 @@ function configureRoutes() {
         order: 1,
         layout: eLayoutType.application,
       },
+       {
+      path: '/marquee-management',
+      name: '::Menu:MarqueeManagement',
+      iconClass: 'fas fa-building',
+      order: 2,
+      layout: eLayoutType.application,
+    },
+    {
+      path: '/marquees',
+      name: '::Menu:Marquees',
+      iconClass: 'fas fa-warehouse', 
+      parentName: '::Menu:MarqueeManagement',
+      layout: eLayoutType.application,
+      requiredPolicy: 'MarqueeManagement.Marquees',
+    },
+    {
+      path: '/customers',
+      name: '::Menu:Customers',
+      parentName: '::Menu:MarqueeManagement',
+       iconClass: 'fas fa-users',
+      layout: eLayoutType.application,
+      requiredPolicy: 'MarqueeManagement.Customers',
+    },
+    {
+      path: '/menu-items',
+      name: '::Menu:MenuItems',
+        iconClass: 'fas fa-utensils',
+      parentName: '::Menu:MarqueeManagement',
+      layout: eLayoutType.application,
+      requiredPolicy: 'MarqueeManagement.MenuItems',
+    },
   ]);
 }

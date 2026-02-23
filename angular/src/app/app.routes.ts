@@ -23,4 +23,19 @@ export const APP_ROUTES: Routes = [
     path: 'setting-management',
     loadChildren: () => import('@abp/ng.setting-management').then(c => c.createRoutes()),
   },
+{
+  path: 'marquees',
+  loadComponent: () =>
+    //import('./marquees/marquees.component').then(c => c.MarqueesComponent),
+},
+{
+  path: 'customers',
+  loadComponent: () =>
+    //import('./customers/customers.component').then(c => c.CustomersComponent),
+},
+{
+  path: 'menu-items',
+  loadComponent: () =>
+    //import('./menu-items/menu-items.component').then(c => c.MenuItemsComponent),
+},
 ];
