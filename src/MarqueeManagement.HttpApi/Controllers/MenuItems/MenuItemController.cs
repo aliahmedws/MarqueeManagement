@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using MarqueeManagement.MenuItems;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 
-namespace MarqueeManagement.MenuItems;
+namespace MarqueeManagement.Controllers.MenuItems;
 
 [RemoteService(IsEnabled = true)]
 [ControllerName("MenuItems")]

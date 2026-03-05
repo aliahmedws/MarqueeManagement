@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using MarqueeManagement.Customers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 
-namespace MarqueeManagement.Customers;
+namespace MarqueeManagement.Controllers.Customers;
 
 [RemoteService(IsEnabled = true)]
 [ControllerName("Customers")]

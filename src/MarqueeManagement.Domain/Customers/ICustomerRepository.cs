@@ -7,8 +7,8 @@ namespace MarqueeManagement.Customers;
 
 public interface ICustomerRepository : IRepository<Customer, Guid>
 {
-    Task<Customer> FindByPhoneAsync(string phone);
-    Task<Customer> FindByEmailAsync(string email);
+    Task<Customer?> FindByPhoneAsync(string phone);
+    Task<Customer?> FindByEmailAsync(string email);
     Task<List<Customer>> GetAllAsync(
         int skipCount,
         int maxResultCount,

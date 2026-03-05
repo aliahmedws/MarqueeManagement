@@ -8,6 +8,22 @@ public static class MarqueeManagementPermissions
 
     //Add your own permission names. Example:
     //public const string MyPermission1 = GroupName + ".MyPermission1";
+    public static class Bookings
+    {
+        public const string Default = GroupName + ".Bookings";
+        public const string Create = Default + ".Create";
+        public const string Edit = Default + ".Edit";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class MenuCategories
+    {
+        public const string Default = GroupName + ".MenuCategories";
+        public const string Create = Default + ".Create";
+        public const string Edit = Default + ".Edit";
+        public const string Delete = Default + ".Delete";
+    }
+
     public static class Marquees
     {
         public const string Default = GroupName + ".Marquees";

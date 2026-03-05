@@ -8,37 +8,37 @@ using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 
-namespace MarqueeManagement.Marquees;
+namespace MarqueeManagement.MenuCategories;
 
-public class EfCoreMarqueeRepository : EfCoreRepository<MarqueeManagementDbContext, Marquee, Guid>,
-      IMarqueeRepository
+public class EfCoreMenuCategoryRepository :
+    EfCoreRepository<MarqueeManagementDbContext, MenuCategory, Guid>,
+    IMenuCategoryRepository
 {
-    public EfCoreMarqueeRepository(
+    public EfCoreMenuCategoryRepository(
         IDbContextProvider<MarqueeManagementDbContext> dbContextProvider)
         : base(dbContextProvider)
     {
     }
 
-    public async Task<Marquee> FindByNameAsync(string name)
+    public async Task<MenuCategory> FindByNameAsync(string name)
     {
         var dbSet = await GetDbSetAsync();
         return await dbSet.FirstOrDefaultAsync(x => x.Name == name);
     }
 
-    public async Task<List<Marquee>> GetListAsync(
-    int skipCount,
-    int maxResultCount,
-    string sorting,
-    string? filter = null,
-    string? name = null,
-    string? location = null)
+    public async Task<List<MenuCategory>> GetListAsync(
+        int skipCount,
+        int maxResultCount,
+        string sorting,
+        string? filter = null,
+        string? name = null)
     {
         if (string.IsNullOrWhiteSpace(sorting))
         {
-            sorting = nameof(Marquee.Name);
+            sorting = nameof(MenuCategory.Name);
         }
 
-        var query = await GetQueryableAsync(filter, name, location);
+        var query = await GetQueryableAsync(filter, name);
 
         query = query.OrderBy(sorting)
                      .Skip(skipCount)
@@ -48,30 +48,26 @@ public class EfCoreMarqueeRepository : EfCoreRepository<MarqueeManagementDbConte
     }
 
     public async Task<long> GetCountAsync(
-      string? filter = null,
-      string? name = null,
-      string? location = null)
+        string? filter = null,
+        string? name = null)
     {
-        var query = await GetQueryableAsync(filter, name, location);
+        var query = await GetQueryableAsync(filter, name);
         return await query.LongCountAsync();
     }
-    private async Task<IQueryable<Marquee>> GetQueryableAsync(
-    string? filter = null,
-    string? name = null,
-    string? location = null)
+
+    private async Task<IQueryable<MenuCategory>> GetQueryableAsync(
+        string? filter = null,
+        string? name = null)
     {
         var dbSet = await GetDbSetAsync();
         var query = dbSet.AsQueryable();
 
         query = query
             .WhereIf(!filter.IsNullOrWhiteSpace(),
-                x => x.Name.Contains(filter!) || x.Location.Contains(filter!))
+                x => x.Name.Contains(filter))
             .WhereIf(!name.IsNullOrWhiteSpace(),
-                x => x.Name.Contains(name!))
-            .WhereIf(!location.IsNullOrWhiteSpace(),
-                x => x.Location.Contains(location!));
+                x => x.Name.Contains(name));
 
         return query;
     }
-
 }

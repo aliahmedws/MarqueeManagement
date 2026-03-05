@@ -71,7 +71,6 @@ public class MarqueeAppService
     public async Task UpdateAsync(Guid id, UpdateMarqueeDto input)
     {
         var marquee = await _marqueeRepository.GetAsync(id);
-
         await _marqueeManager.UpdateAsync(
             marquee,
             input.Name,

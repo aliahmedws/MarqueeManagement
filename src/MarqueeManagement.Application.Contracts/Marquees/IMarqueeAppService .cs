@@ -11,6 +11,5 @@ public interface IMarqueeAppService : IApplicationService
     Task<PagedResultDto<MarqueeDto>> GetListAsync(GetMarqueeListDto input);
     Task<MarqueeDto> CreateAsync(CreateMarqueeDto input);
     Task UpdateAsync(Guid id, UpdateMarqueeDto input);
-
     Task DeleteAsync(Guid id);
 }

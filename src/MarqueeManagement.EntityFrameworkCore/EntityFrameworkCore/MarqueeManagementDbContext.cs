@@ -17,6 +17,8 @@ using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using MarqueeManagement.Marquees;
 using MarqueeManagement.Customers;
 using MarqueeManagement.MenuItems;
+using MarqueeManagement.Bookings;
+using MarqueeManagement.MenuCategories;
 
 namespace MarqueeManagement.EntityFrameworkCore;
 
@@ -59,6 +61,8 @@ public class MarqueeManagementDbContext :
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
     #endregion
+    public DbSet<Booking> Bookings { get; set; }
+    public DbSet<MenuCategory> MenuCategories { get; set; }
     public DbSet<Marquee> Marquees { get; set; }
     public DbSet<MenuItem> MenuItems { get; set; }
     public DbSet<Customer> Customers { get; set; }
@@ -92,6 +96,50 @@ public class MarqueeManagementDbContext :
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
         //});
+
+        // Booking entity configuration
+        builder.Entity<Booking>(b =>
+        {
+            b.ToTable(MarqueeManagementConsts.DbTablePrefix + "Bookings",
+                      MarqueeManagementConsts.DbSchema);
+            b.ConfigureByConvention();
+
+            b.Property(x => x.EventDate)
+                .IsRequired();
+            b.HasIndex(x => x.EventDate);
+
+            b.Property(x => x.EventType)
+                .IsRequired();
+            b.HasIndex(x => x.EventType);
+
+            b.Property(x => x.GuestCount)
+                .IsRequired();
+            b.HasIndex(x => x.GuestCount);
+
+            b.Property(x => x.TotalAmount)
+                .IsRequired();
+            b.HasIndex(x => x.TotalAmount);
+
+            b.Property(x => x.Status)
+                .IsRequired();
+            b.HasIndex(x => x.Status); 
+        });
+
+        builder.Entity<MenuCategory>(b =>
+        {
+            b.ToTable(MarqueeManagementConsts.DbTablePrefix + "MenuCategories",
+                      MarqueeManagementConsts.DbSchema);
+            b.ConfigureByConvention();
+
+            b.Property(x => x.Name)
+                .IsRequired()
+                .HasMaxLength(MenuCategoryConsts.MaxNameLength);
+            b.HasIndex(x => x.Name);
+
+            b.Property(x => x.Description)
+                .HasMaxLength(MenuCategoryConsts.MaxDescriptionLength);
+            b.HasIndex(x => x.Description);
+        });
 
         builder.Entity<Marquee>(b =>
         {
@@ -162,5 +210,8 @@ public class MarqueeManagementDbContext :
             b.HasIndex(x => x.Name);
             b.HasIndex(x => x.Price);
         });
+
+
+
     }
 }

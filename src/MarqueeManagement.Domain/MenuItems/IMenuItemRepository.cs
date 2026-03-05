@@ -7,7 +7,7 @@ namespace MarqueeManagement.MenuItems;
 
 public interface IMenuItemRepository : IRepository<MenuItem, Guid>
 {
-    Task<MenuItem> FindByNameAsync(string name);
+    Task<MenuItem?> FindByNameAsync(string name);
     Task<List<MenuItem>> GetListAsync(
         int skipCount,
         int maxResultCount,

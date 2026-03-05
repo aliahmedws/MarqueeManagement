@@ -16,6 +16,43 @@ public class MarqueeManagementPermissionDefinitionProvider : PermissionDefinitio
             L("Permission:MarqueeManagement")
         );
 
+        var bookingPermission = marqueeGroup.AddPermission(
+    MarqueeManagementPermissions.Bookings.Default,
+    L("Permission:Bookings")
+);
+
+        bookingPermission.AddChild(
+            MarqueeManagementPermissions.Bookings.Create,
+            L("Permission:Bookings.Create")
+        );
+        bookingPermission.AddChild(
+            MarqueeManagementPermissions.Bookings.Edit,
+            L("Permission:Bookings.Edit")
+        );
+        bookingPermission.AddChild(
+            MarqueeManagementPermissions.Bookings.Delete,
+            L("Permission:Bookings.Delete")
+        );
+
+
+        var menuCategoryPermission = marqueeGroup.AddPermission(
+            MarqueeManagementPermissions.MenuCategories.Default,
+            L("Permission:MenuCategories")
+        );
+
+        menuCategoryPermission.AddChild(
+            MarqueeManagementPermissions.MenuCategories.Create,
+            L("Permission:MenuCategories.Create")
+        );
+        menuCategoryPermission.AddChild(
+            MarqueeManagementPermissions.MenuCategories.Edit,
+            L("Permission:MenuCategories.Edit")
+        );
+        menuCategoryPermission.AddChild(
+            MarqueeManagementPermissions.MenuCategories.Delete,
+            L("Permission:MenuCategories.Delete")
+        );
+
         var marqueePermission = marqueeGroup.AddPermission(MarqueeManagementPermissions.Marquees.Default,
             L("Permission:Marquees")
         );
