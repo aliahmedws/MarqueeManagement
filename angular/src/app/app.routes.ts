@@ -25,17 +25,24 @@ export const APP_ROUTES: Routes = [
   },
 {
   path: 'marquees',
-  loadComponent: () =>
-    //import('./marquees/marquees.component').then(c => c.MarqueesComponent),
+  loadComponent: () => import('./marquees/marquees').then(c => c.Marquees),
 },
 {
   path: 'customers',
-  loadComponent: () =>
-    //import('./customers/customers.component').then(c => c.CustomersComponent),
+  loadComponent: () => import('./customers/customers').then(c => c.Customers),
 },
 {
   path: 'menu-items',
-  loadComponent: () =>
-    //import('./menu-items/menu-items.component').then(c => c.MenuItemsComponent),
+  loadComponent: () => import('./menu-items/menu-items').then(c => c.MenuItems),
 },
+{
+  path: 'bookings',
+  loadComponent: () => import('./bookings/bookings').then(c => c.Bookings),
+},
+{
+  path: 'menu-categories',
+  loadComponent: () => import('./menu-categories/menu-categories').then(c => c.MenuCategories),
+},
+
+
 ];

@@ -43,10 +43,28 @@ function configureRoutes() {
     {
       path: '/menu-items',
       name: '::Menu:MenuItems',
-        iconClass: 'fas fa-utensils',
+      iconClass: 'fas fa-utensils',
       parentName: '::Menu:MarqueeManagement',
       layout: eLayoutType.application,
       requiredPolicy: 'MarqueeManagement.MenuItems',
     },
+
+     {
+      path: '/bookings',
+      name: '::Menu:Bookings',
+      iconClass: 'fas fa-calendar-check',
+      parentName: '::Menu:MarqueeManagement',
+      layout: eLayoutType.application,
+      requiredPolicy: 'MarqueeManagement.Bookings',
+    },
+    {
+      path: '/menu-categories',
+      name: '::Menu:MenuCategories',
+      iconClass: 'fas fa-list-alt',
+      parentName: '::Menu:MarqueeManagement',
+      layout: eLayoutType.application,
+      requiredPolicy: 'MarqueeManagement.MenuCategories',
+    },
+
   ]);
 }

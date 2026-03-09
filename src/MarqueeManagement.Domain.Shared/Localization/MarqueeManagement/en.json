@@ -28,12 +28,46 @@
     "Permission:MenuItems": "Menu Items",
     "Permission:MenuItems.Create": "Create",
     "Permission:MenuItems.Edit": "Edit",
-    "Permission:MenuItems.Delete": "Delete"
+    "Permission:MenuItems.Delete": "Delete",
 
-
-
-
-
-
-  }
-}
+      "::Menu:Bookings": "Bookings",
+      "::NewBooking": "New Booking",
+      "Event Type": "Event Type",
+      "Status": "Status",
+      "Event Date": "Event Date",
+      "Guest Count": "Guest Count",
+      "Total Amount": "Total Amount",
+      "Description": "Description",
+      "Created": "Created",
+      "Modified": "Modified",
+      "ARE YOU SURE YOU WANT TO DELETE?": "Are you sure you want to delete?",
+      "DELETE CONFIRMATION": "Delete Confirmation",
+      "Deleted Successfully": "Deleted successfully",
+      "Nothing changed": "Nothing changed",
+      "Updated Successfully": "Updated successfully",
+      "Created Successfully": "Created successfully",
+      "Filters": "Filters",
+      "Reset": "Reset",
+      "Apply": "Apply",
+      "Save": "Save",
+      "Cancel": "Cancel",
+      "Edit Booking": "Edit Booking",
+      "New Booking": "New Booking",
+      "Actions": "Actions",
+      "Search Here": "Search Here",
+      "fa-plus": "Add New Booking",
+      "fa-search": "Search",
+      "fa-undo": "Undo",
+      "fa-filter": "Filter",
+      "fa-cog": "Settings",
+      "fa-angle-up": "Expand Filters",
+      "fa-angle-down": "Collapse Filters",
+      "fa-check": "Save",
+        "::NewMarquee": "New Marquee",
+        "Location": "Location",
+        "Capacity": "Capacity",
+        "Price Per Day": "Price Per Day",
+        "Edit": "Edit",
+        "Delete": "Delete"
+      }
+    }
