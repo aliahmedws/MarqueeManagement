@@ -46,4 +46,12 @@ public static class MarqueeManagementPermissions
         public const string Edit = Default + ".Edit";
         public const string Delete = Default + ".Delete";
     }
+
+    public static class BookingMenuOptions
+    {
+        public const string Default = GroupName + ".BookingMenuOptions";
+        public const string Create = Default + ".Create";
+        public const string Edit = Default + ".Edit";
+        public const string Delete = Default + ".Delete";
+    }
 }

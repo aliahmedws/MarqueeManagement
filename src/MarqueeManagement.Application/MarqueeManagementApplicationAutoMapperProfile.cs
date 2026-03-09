@@ -1,4 +1,5 @@
 using AutoMapper;
+using MarqueeManagement.BookingMenuOptions;
 using MarqueeManagement.Bookings;
 using MarqueeManagement.Customers;
 using MarqueeManagement.Marquees;
@@ -16,6 +17,7 @@ public class MarqueeManagementApplicationAutoMapperProfile : Profile
          * into multiple profile classes for a better organization. */
 
          CreateMap<Booking, BookingDto>();
+         CreateMap<BookingMenuOption, BookingMenuOptionDto>();
          CreateMap<Customer, CustomerDto>();
          CreateMap<Marquee, MarqueeDto>();
          CreateMap<MenuCategory, MenuCategoryDto>();

@@ -102,8 +102,25 @@ public class MarqueeManagementPermissionDefinitionProvider : PermissionDefinitio
             MarqueeManagementPermissions.MenuItems.Delete,
             L("Permission:MenuItems.Delete")
         );
-    }
+        var bookingMenuOptionPermission = marqueeGroup.AddPermission(
+    MarqueeManagementPermissions.BookingMenuOptions.Default,
+    L("Permission:BookingMenuOptions")
+);
 
+        bookingMenuOptionPermission.AddChild(
+            MarqueeManagementPermissions.BookingMenuOptions.Create,
+            L("Permission:BookingMenuOptions.Create")
+        );
+        bookingMenuOptionPermission.AddChild(
+            MarqueeManagementPermissions.BookingMenuOptions.Edit,
+            L("Permission:BookingMenuOptions.Edit")
+        );
+        bookingMenuOptionPermission.AddChild(
+            MarqueeManagementPermissions.BookingMenuOptions.Delete,
+            L("Permission:BookingMenuOptions.Delete")
+        );
+
+    }
 
     private static LocalizableString L(string name)
     {

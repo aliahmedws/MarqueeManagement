@@ -24,7 +24,7 @@
 
         <div class="col-2 text-end">
           <button class="btn btn-outline-primary w-100" (click)="showFilter = !showFilter"> 
-            {{ '::Filters' | abpLocalization }}
+           <!-- {{ '::Filters' | abpLocalization }}--> Filters
             <i class="fas" [ngClass]="showFilter ? 'fa-angle-up' : 'fa-angle-down'"> </i>
           </button>
         </div>
@@ -65,7 +65,7 @@
   <div class="card mt-2">
     <div class="card-body">
 
-      <ngx-datatable [rows]="bookings.items" [count]="bookings.totalCount" [list]="list" default>
+      <ngx-datatable [rows]="bookings.items" [count]="bookings.totalCount" default>
 
         <!-- ACTIONS -->
         <ngx-datatable-column name="::Actions" [maxWidth]="150" [sortable]="false">
@@ -75,10 +75,10 @@
                 <i class="fa fa-cog me-1"></i> {{ '::Actions' | abpLocalization }}
               </button>
               <div ngbDropdownMenu>
-                <button *abpPermission="'Bookings.Edit'" ngbDropdownItem (click)="editBooking(row.id)">
+                <button *abpPermission="'MarqueeManagement.Bookings.Edit'" ngbDropdownItem (click)="editBooking(row.id)">
                   {{ '::Edit' | abpLocalization }}
                 </button>
-                <button *abpPermission="'Bookings.Delete'" ngbDropdownItem (click)="delete(row.id)">
+                <button *abpPermission="'MarqueeManagement.Bookings.Delete'" ngbDropdownItem (click)="delete(row.id)">
                   {{ '::Delete' | abpLocalization }}
                 </button>
               </div>
@@ -108,9 +108,7 @@
 <abp-modal [(visible)]="isModalOpen">
 
   <ng-template #abpHeader>
-    <h3 class="text-secondary fw-semibold m-0 fs-3">
-      {{ selectedBooking.id ? '::EditBooking' | abpLocalization : '::NewBooking' | abpLocalization }}
-    </h3>
+<h3>{{ (selectedBooking.id ? '::EditBooking' : '::NewBooking') | abpLocalization }}</h3>
   </ng-template>
 
   <ng-template #abpBody>
@@ -134,7 +132,12 @@
 
         <div class="col-md-6 mb-3">
           <label for="status" class="form-label">{{ '::Status' | abpLocalization }} <span class="text-danger">*</span></label>
-          <input id="status" class="form-control" formControlName="status" />
+          <select class="form-control" formControlName="status">
+  <option [ngValue]="0">Pending</option>
+  <option [ngValue]="1">Confirmed</option>
+  <option [ngValue]="2">Cancelled</option>
+  <option [ngValue]="3">Completed</option>
+</select>
         </div>
 
         <div class="col-md-6 mb-3">
@@ -151,9 +154,9 @@
     <button type="button" class="btn btn-secondary" (click)="isModalOpen = false">
       {{ '::Cancel' | abpLocalization }}
     </button>
-    <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="form.invalid">
-      <i class="fas fa-check"></i> {{ '::Save' | abpLocalization }}
-    </button>
+<button type="submit" class="btn btn-primary" (click)="save()" [disabled]="form?.invalid">
+  <i class="fas fa-check"></i> {{ '::Save' | abpLocalization }}
+</button>
   </ng-template>
 
 </abp-modal>

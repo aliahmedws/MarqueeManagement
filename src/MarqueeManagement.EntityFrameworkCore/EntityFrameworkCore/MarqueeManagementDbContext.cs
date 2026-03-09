@@ -19,6 +19,7 @@ using MarqueeManagement.Customers;
 using MarqueeManagement.MenuItems;
 using MarqueeManagement.Bookings;
 using MarqueeManagement.MenuCategories;
+using MarqueeManagement.BookingMenuOptions;
 
 namespace MarqueeManagement.EntityFrameworkCore;
 
@@ -62,6 +63,7 @@ public class MarqueeManagementDbContext :
 
     #endregion
     public DbSet<Booking> Bookings { get; set; }
+    public DbSet<BookingMenuOption> BookingMenuOptions { get; set; }
     public DbSet<MenuCategory> MenuCategories { get; set; }
     public DbSet<Marquee> Marquees { get; set; }
     public DbSet<MenuItem> MenuItems { get; set; }
@@ -90,14 +92,6 @@ public class MarqueeManagementDbContext :
 
         /* Configure your own tables/entities inside here */
 
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(MarqueeManagementConsts.DbTablePrefix + "YourEntities", MarqueeManagementConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
-
-        // Booking entity configuration
         builder.Entity<Booking>(b =>
         {
             b.ToTable(MarqueeManagementConsts.DbTablePrefix + "Bookings",
@@ -212,6 +206,14 @@ public class MarqueeManagementDbContext :
         });
 
 
+        builder.Entity<BookingMenuOption>(b =>
+        {
+            b.ToTable(MarqueeManagementConsts.DbTablePrefix + "BookingMenuOptions",
+               MarqueeManagementConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.Quantity).IsRequired();
+            b.Property(x => x.Price).IsRequired();
+        });
 
     }
 }

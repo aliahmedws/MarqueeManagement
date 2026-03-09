@@ -1,18 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { ListService, PagedResultDto } from '@abp/ng.core';
+import { CoreModule, ListService, LocalizationModule, PagedResultDto } from '@abp/ng.core';
 import { BookingDto, GetBookingListDto, CreateBookingDto, UpdateBookingDto } from '../proxy/bookings';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbDateAdapter, NgbDateNativeAdapter, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgbDateAdapter, NgbDateNativeAdapter, NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { CardModule, ConfirmationService, Confirmation, ModalComponent, ToasterService } from '@abp/ng.theme.shared';
 import { BookingService } from '../proxy/controllers';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { PageModule } from '@abp/ng.components/page';
+//import { ListModule } from '@abp/ng.components/list';
 
 @Component({
   standalone: true,
   selector: 'app-bookings',
   templateUrl: './bookings.html',
   styleUrls: ['./bookings.scss'],
-  imports: [CommonModule, CardModule, NgbDatepickerModule, ModalComponent],
+  imports: [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+  CardModule,
+  NgbDatepickerModule,
+  NgbDropdownModule,
+  ModalComponent,
+  NgxDatatableModule,
+  PageModule,
+  LocalizationModule,
+  CoreModule 
+  //ListModule
+],
   providers: [ListService, { provide: NgbDateAdapter, useClass: NgbDateNativeAdapter }],
 })
 export class Bookings implements OnInit {
@@ -81,11 +97,10 @@ export class Bookings implements OnInit {
   }
 
   // CLEAR FILTERS
-  clearFilters(): void {
-    this.filters = {} as GetBookingListDto;
-    this.list.get();
-    this.form?.reset();
-  }
+clearFilters(): void {
+  this.filters = {} as GetBookingListDto;
+  this.list.get();
+}
 
   // SAVE
   save(): void {
